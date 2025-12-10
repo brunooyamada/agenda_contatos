@@ -18,7 +18,8 @@ class ContactHelper {
   late Database _db;
 
   Future<Database> get db async {
-    return _db ??= await initDb();
+    _db = await initDb();
+    return _db;
   }
 
   Future<Database> initDb() async {
@@ -101,11 +102,13 @@ class ContactHelper {
 }
 
 class Contact {
-  late int id;
+  int? id;
   late String name;
   late String email;
   late String phone;
   late String img;
+
+  Contact();
 
   Contact.fromMap(Map map) {
     id = map[idColumn];
