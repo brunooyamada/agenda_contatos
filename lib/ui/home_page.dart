@@ -63,7 +63,7 @@ class _HomePageState extends State<HomePage> {
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   image: DecorationImage(
-                    image: FileImage(File(contacts[index].img)),
+                    image: FileImage(File(contacts[index].img ?? "")),
                   ),
                 ),
               ),
