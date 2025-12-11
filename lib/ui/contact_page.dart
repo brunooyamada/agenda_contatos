@@ -23,7 +23,7 @@ class _ContactPageState extends State<ContactPage> {
   void initState() {
     super.initState();
 
-    if (widget.contact != null) {
+    if (widget.contact == null) {
       _editedContact = Contact();
     } else {
       _editedContact = Contact.fromMap(widget.contact!.toMap());
