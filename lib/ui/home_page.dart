@@ -84,6 +84,7 @@ class _HomePageState extends State<HomePage> {
                     image: contacts[index].img != null
                         ? FileImage(File(contacts[index].img!))
                         : AssetImage("images/person.png"),
+                    fit: BoxFit.cover,
                   ),
                 ),
               ),
