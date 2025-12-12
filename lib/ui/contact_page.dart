@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:agenda_contatos/helpers/contact_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ContactPage extends StatefulWidget {
   const ContactPage({super.key, this.contact});
@@ -21,6 +22,8 @@ class _ContactPageState extends State<ContactPage> {
 
   bool _userEdited = false;
   late Contact _editedContact;
+
+  final _picker = ImagePicker();
 
   @override
   void initState() {
@@ -82,6 +85,14 @@ class _ContactPageState extends State<ContactPage> {
                     ),
                   ),
                 ),
+                onTap: () {
+                  _picker.pickImage(source: ImageSource.camera).then((file) {
+                    if (file == null) return;
+                    setState(() {
+                      _editedContact.img = file.path;
+                    });
+                  });
+                },
               ),
               TextField(
                 controller: _nameController,

@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:agenda_contatos/helpers/contact_helper.dart';
 import 'package:agenda_contatos/ui/contact_page.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -122,7 +123,12 @@ class _HomePageState extends State<HomePage> {
                         textStyle: TextStyle(fontSize: 20.0),
                       ),
                       child: const Text("Ligar"),
-                      onPressed: () {},
+                      onPressed: () {
+                        launchUrl(
+                          Uri(scheme: "tel", path: contacts[index].phone),
+                        );
+                        Navigator.pop(context);
+                      },
                     ),
                   ),
                   Padding(
