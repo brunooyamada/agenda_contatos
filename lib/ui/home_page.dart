@@ -97,7 +97,70 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       onTap: () {
-        _showContactPage(contact: contacts[index]);
+        _showOptions(context, index);
+      },
+    );
+  }
+
+  void _showOptions(BuildContext context, int index) {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) {
+        return BottomSheet(
+          onClosing: () {},
+          builder: (context) {
+            return Container(
+              padding: EdgeInsets.all(10.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.all(10.0),
+                    child: TextButton(
+                      style: TextButton.styleFrom(
+                        foregroundColor: Colors.red,
+                        textStyle: TextStyle(fontSize: 20.0),
+                      ),
+                      child: const Text("Ligar"),
+                      onPressed: () {},
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(10.0),
+                    child: TextButton(
+                      style: TextButton.styleFrom(
+                        foregroundColor: Colors.red,
+                        textStyle: TextStyle(fontSize: 20.0),
+                      ),
+                      child: const Text("Editar"),
+                      onPressed: () {
+                        Navigator.pop(context);
+                        _showContactPage(contact: contacts[index]);
+                      },
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(10.0),
+                    child: TextButton(
+                      style: TextButton.styleFrom(
+                        foregroundColor: Colors.red,
+                        textStyle: TextStyle(fontSize: 20.0),
+                      ),
+                      child: const Text("Excluir"),
+                      onPressed: () {
+                        _helper.deleteContact(contacts[index].id!);
+                        setState(() {
+                          contacts.removeAt(index);
+                          Navigator.pop(context);
+                        });
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
+        );
       },
     );
   }
