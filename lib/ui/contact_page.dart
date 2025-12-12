@@ -42,11 +42,9 @@ class _ContactPageState extends State<ContactPage> {
       canPop: false,
       onPopInvokedWithResult: (didPop, result) async {
         if (didPop) return;
-        Future.microtask(() async {
-          if (await _requestPop()) {
-            Navigator.pop(context, result);
-          }
-        });
+        if (await _requestPop()) {
+          Navigator.pop(context, result);
+        }
       },
       child: Scaffold(
         appBar: AppBar(
